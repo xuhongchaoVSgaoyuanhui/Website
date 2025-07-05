@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>订阅测试</title>
+    <link rel="icon" type="image/png" sizes="480x480" href="assets/img/logos/orig_480x480.png">
+    <link rel="icon" type="image/png" sizes="800x800" href="assets/img/logos/trans_800x800.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="800x800" href="assets/img/logos/trans_800x800.png">
+    <link rel="icon" type="image/png" sizes="480x480" href="assets/img/logos/orig_480x480.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="800x800" href="assets/img/logos/trans_800x800.png">
+    <link rel="icon" type="image/png" sizes="800x800" href="assets/img/logos/trans_800x800.png">
+    <link rel="icon" type="image/png" sizes="800x800" href="assets/img/logos/trans_800x800.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:200,300,400,500,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit:200,300,400,500,600,700,800,900&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/bss-overrides.css">
+    <link rel="stylesheet" href="assets/css/countdown-banner.css">
+    <link rel="stylesheet" href="assets/css/template.css">
+</head>
+
+<body style="background: url(&quot;assets/img/logos/orig_1920x1080.png&quot;) top / cover repeat-x;width: auto;max-width: none;height: auto;margin: auto;padding: inherit;margin-top: auto;margin-right: auto;min-width: auto;min-height: auto;max-height: none;"><div class="container mt-5">
+    <form id="subscribe-form">
+      <div class="input-group">
+        <input type="email" id="subscriber-email" class="form-control" placeholder="输入你的邮箱" required="">
+        <button type="submit" class="btn btn-primary">订阅</button>
+      </div>
+      <div id="subscribe-message" style="margin-top: 10px;"></div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("subscribe-form");
+      const emailInput = document.getElementById("subscriber-email");
+      const messageBox = document.getElementById("subscribe-message");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = emailInput.value.trim();
+
+        if (!email) {
+          messageBox.innerHTML = "❌ 请输入邮箱地址";
+          return;
+        }
+
+        messageBox.innerHTML = "⏳ 正在发送，请稍候...";
+
+        try {
+          const res = await fetch("/send-subscribe-email", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email })
+          });
+
+          const result = await res.json();
+
+          if (res.ok) {
+            messageBox.innerHTML = "✅ 订阅成功，邮件已发送！";
+            form.reset();
+          } else {
+            messageBox.innerHTML = `❌ 发送失败：${result.error || "未知错误"}`;
+          }
+        } catch (err) {
+          console.error(err);
+          messageBox.innerHTML = "❌ 网络错误，发送失败";
+        }
+      });
+    });
+  </script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/Countdown.js"></script>
+    <script src="assets/js/mailplay.js"></script>
+</body>
+
+</html>
