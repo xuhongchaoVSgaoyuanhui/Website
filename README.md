@@ -12,9 +12,7 @@
 
 [![Website](https://img.shields.io/badge/访问我们的网站-OpenFrqush-blue?logo=google-chrome)](https://openfrqushgame.com)     
 
-（网站还在ICP备案中，无法访问）
 
-（The website is still in the ICP filing and cannot be accessed.）
 
 ![Version](https://img.shields.io/badge/version-0.9-blue)
 ![Status](https://img.shields.io/badge/status-beta-yellow)
