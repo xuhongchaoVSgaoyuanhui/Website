@@ -10,7 +10,7 @@
 # 🌏这个项目是我们频道的网站开源模板😊😊😊
 
 
-[![Website](https://img.shields.io/badge/访问我们的网站-OpenFrqush-blue?logo=google-chrome)](https://www.openfrqushgame.com)     
+[![Website](https://img.shields.io/badge/访问我们的网站-OpenFrqush-blue?logo=google-chrome)](https://openfrqushgame.com)     
 
 （网站还在ICP备案中，无法访问）
 
